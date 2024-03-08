@@ -23,8 +23,7 @@ public class ResgisterNewUser extends Baseclass{
 		
 		// Enter the URL �http://practice.automationtesting.in/�
 		driver.get(URL);
-		
-	
+		driver.manage().window().maximize();
 		Hp.getMyAccountButton().click();
 		LoginPage Lp=new LoginPage(driver);
 		

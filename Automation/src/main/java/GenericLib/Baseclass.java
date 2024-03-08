@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -18,7 +19,6 @@ public class Baseclass {
 	public WebDriver driver ;
 	
 	@BeforeClass
-	(groups= {"smokeTest","Regression"})
 	public void beforeClassConfig() {
 		System.out.println("Starting the execution of the Suite");
 	}
@@ -27,11 +27,11 @@ public class Baseclass {
 	public void AfterClassConfig() {
 		System.out.println("Ending the execution of the Suite");
 	}
-	
-	@BeforeMethod
+	@Parameters("browser")
+	@BeforeMethod(groups= {"smokeTest","Regression"})
 	public void beforeMethodConfig() {
 		
-		String browser = "chrome";
+		String browser = "msedge";
 		if(browser.equals("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver=new ChromeDriver();
@@ -49,7 +49,7 @@ public class Baseclass {
 		}
 	}
 	
-	@AfterMethod
+	@AfterMethod(groups= {"smokeTest","Regression"})
 	public void AfterMethodconfig() {
 		driver.close();
 	}
